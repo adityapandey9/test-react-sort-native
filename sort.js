@@ -7,7 +7,8 @@ import {
     View,
     ActivityIndicator,
     Button,
-    ToastAndroid
+    ToastAndroid,
+    
 } from 'react-native';
 import { withRouter } from 'react-router-native'
 
@@ -92,7 +93,6 @@ class SortPage extends Component {
     }
 
     render(){
-        console.log("V: ", this.state.data, this.state.order)
         if(this.state.data == null){
             return <ActivityIndicator style={{marginTop: "20%"}} />
         }

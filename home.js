@@ -43,12 +43,7 @@ export default class HomePage extends Component {
         })
     }
 
-    renderItem = (item) => {
-        //write your own layout in list view
-        <TouchableHighlight key={item._id}>
-            <Text>{item.distance}</Text>
-        </TouchableHighlight>
-    };
+    _keyExtractor = (item, index) => item.key;
 
     render(){
         if(this.state.data.length == 0){
@@ -60,15 +55,12 @@ export default class HomePage extends Component {
                         <Text style={[{fontSize: 20}]}>Sort</Text>
                     </Link>
                 <FlatList
-                    ItemSeparatorComponent={({highlighted}) => (
-                        <View style={[highlighted && {marginLeft: 0}]} />
-                      )}
                     numColumns={1}
+                    keyExtractor={this._keyExtractor}
                     contentContainerStyle={{margin:0,padding:0}}
                     data={this.state.data}
                     renderItem={({item, separators}) => (
-                        <TouchableHighlight onShowUnderlay={separators.highlight}
-                        onHideUnderlay={separators.unhighlight} style={[{marginBottom: 10, marginTop: 10}]}>
+                        <TouchableHighlight key={item._id} style={[{marginBottom: 10, marginTop: 10}]}>
                                 <CardView styles={[{width: (sliderWidth)}]}  data={item} />
                         </TouchableHighlight>
                       )}
